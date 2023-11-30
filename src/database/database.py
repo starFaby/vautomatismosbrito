@@ -103,6 +103,7 @@ class Producto(db.Model):
     pfsabprodstock = db.Column(db.String(10), nullable=False) #int
     pfsabprodestado = db.Column(db.String(1), nullable=True)
     pfsabprodcreatedat = db.Column(db.String(11), nullable=True) 
+    
     pfsabcategoriaid = db.Column(db.Integer, db.ForeignKey('pfsabcategorias.pfsabcateid',ondelete='CASCADE'), nullable=False)
     pfsabcategoria = db.relationship('Categoria',backref=db.backref('pfsabproductos',lazy=True))
 

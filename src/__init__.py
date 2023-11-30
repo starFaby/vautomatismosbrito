@@ -8,7 +8,8 @@ from flask_fontawesome import FontAwesome
 from src.database.database import db, ma
 #Admin routes
 from src.admin.router.adminRouterUsers import aru
-from src.admin.router.adminRouterCategoria import arc
+from src.admin.router.adminRouterCategoria import arc 
+from src.admin.router.adminRouterProducto import arp
 # Auth routes
 from src.auth.router.routerAuth import rauth
 from src.auth.router.routerLoginIn import rlgn
@@ -40,6 +41,7 @@ def apprun():
     #   Admin
     app.register_blueprint(aru)
     app.register_blueprint(arc)
+    app.register_blueprint(arp)
 
     #   Client
     app.register_blueprint(crc)
