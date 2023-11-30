@@ -6,4 +6,4 @@ arp.route('/arp', methods=['GET', 'POST'], defaults={"page": 1})(AdminController
 arp.route('/arp/<int:page>', methods=['GET', 'POST'])(AdminControllerProducto.onGetAdminControllerProductoList)
 arp.route('/arps', methods=['POST'])(AdminControllerProducto.onGetControllerAdminProductoSave)
 arp.route('/arpup/<id>', methods=['GET', 'POST'])(AdminControllerProducto.onGetControllerAdminProductoUpdate)
-#arp.route('/arpde/<id>', methods=['GET'])(AdminControllerConsulta.onGetControllerAdminConsultaDelete)
+arp.route('/arpde/<id>', methods=['GET'])(AdminControllerProducto.onGetControllerAdminProductoDelete)

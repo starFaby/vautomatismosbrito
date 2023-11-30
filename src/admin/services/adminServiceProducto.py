@@ -54,32 +54,30 @@ class AdminServiceProducto:
             return render('errors/error500.html', e)
         
     @classmethod
-    def onGetAdminServiceConsultUpdate(self, id, pfspcrconsultseccion, pfspcrconsultnum, pfspcrconsultnombre, pfspcrconsultimage, pfspcrconsultdetalle, pfspcrconsulturl, pfspcrconsultestado, pfspcrconsultcreatedat, pfspcrcateid):
+    def onGetAdminServiceProductUpdate(self, id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid):
         try:
-            consulta = Consulta.query.get(id)
-            modelConsulta =  ModelConsulta(0, pfspcrconsultseccion, pfspcrconsultnum, pfspcrconsultnombre, pfspcrconsultimage,
-                                            pfspcrconsultdetalle, pfspcrconsulturl, pfspcrconsultestado, pfspcrconsultcreatedat,
-                                            pfspcrcateid)
-            consulta.pfspcrconsultseccion = modelConsulta.getpfspcrconsultseccion()
-            consulta.pfspcrconsultnum = modelConsulta.getpfspcrconsultnum()
-            consulta.pfspcrconsultnombre = modelConsulta.getpfspcrconsultnombre()
-            consulta.pfspcrconsultimage = modelConsulta.getpfspcrconsultimage()
-            consulta.pfspcrconsultdetalle = modelConsulta.getpfspcrconsultdetalle()
-            consulta.pfspcrconsulturl = modelConsulta.getpfspcrconsulturl()
-            consulta.pfspcrconsultestado = modelConsulta.getpfspcrconsultestado()
-            consulta.pfspcrcateid = modelConsulta.getpfspcrcateid()
+            consulta = Producto.query.get(id)
+            modelConsulta =  ModelProducto(0, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, 
+                                        pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid)
+            consulta.pfsabprodnombre = modelConsulta.getpfsabprodnombre()
+            consulta.pfsabprodimage = modelConsulta.getpfsabprodimage()
+            consulta.pfsabproddetalle = modelConsulta.getpfsabproddetalle()
+            consulta.pfsabprodprecio = modelConsulta.getpfsabprodprecio()
+            consulta.pfsabprodstock = modelConsulta.getpfsabprodstock()
+            consulta.pfsabprodestado = modelConsulta.getpfsabprodestado()
+            consulta.pfspcrconsultestado = modelConsulta.getpfsabprodestado()
+            consulta.pfsabcategoriaid = modelConsulta.getpfsabcategoriaid()
             db.session.commit()
 
         except SQLAlchemyError as e:
             return render('errors/error500.html', e)
         
     @classmethod
-    def onGetAdminServiceConsultaDelete(self, id , pfspcrconsultseccion, pfspcrconsultnum, pfspcrconsultnombre, pfspcrconsultimage, pfspcrconsultdetalle, pfspcrconsulturl, pfspcrconsultestado, pfspcrconsultcreatedat, pfspcrcateid):
-        
-        consulta = Consulta.query.get(id)
-        if consulta.pfspcrconsultid >= 1:
-            modelConsulta = ModelConsulta(id, pfspcrconsultseccion, pfspcrconsultnum, pfspcrconsultnombre, pfspcrconsultimage, pfspcrconsultdetalle, pfspcrconsulturl, pfspcrconsultestado, pfspcrconsultcreatedat, pfspcrcateid)
-            consulta.pfspcrconsultestado = modelConsulta.getpfspcrconsultestado()
+    def onGetAdminServiceProductoDelete(self, id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid):
+        producto = Producto.query.get(id)
+        if producto.pfsabprodid >= 1:
+            modelProducto = ModelProducto(self, id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid)
+            producto.pfsabprodestado = modelProducto.getpfsabprodestado()
             db.session.commit()
             return True
         else:

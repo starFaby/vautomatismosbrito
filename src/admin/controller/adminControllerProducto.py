@@ -51,17 +51,16 @@ class AdminControllerProducto:
         producto = AdminServiceProducto.onGetAdminServiceProductoUpdateSelect(id)
         categorias = AdminServiceCategoria.onGetAdminServiceCategoriaAll()
         if request.method == 'POST':
-            pfspcrconsultseccion = request.form['txtSeccion'] 
-            pfspcrconsultnum = request.form['txtNum']
-            pfspcrconsultnombre = request.form['txtNombre']
-            pfspcrconsultimage = request.form['txtImage']
-            pfspcrconsultdetalle = request.form['txtDetalle']
-            pfspcrconsulturl = request.form['txtUrl']
-            pfspcrconsultestado = request.form['selectEstado']
-            pfspcrconsultcreatedat = datetime.now()
-            pfspcrcateid = request.form['selectCategoria']
-            if pfspcrconsultseccion != '' and pfspcrconsultnum != '' and pfspcrconsultnombre != '' and pfspcrconsultimage != '' and pfspcrconsultdetalle != '' and pfspcrconsulturl != '' and pfspcrconsultestado != 'Elija...' and pfspcrconsultcreatedat != '' and pfspcrcateid != '' :
-                adServConsult = AdminServiceConsulta.onGetAdminServiceConsultUpdate(id, pfspcrconsultseccion, pfspcrconsultnum, pfspcrconsultnombre, pfspcrconsultimage, pfspcrconsultdetalle, pfspcrconsulturl, pfspcrconsultestado, pfspcrconsultcreatedat, pfspcrcateid)
+            pfsabprodnombre = request.form['txtNombre']
+            pfsabprodimage = request.form['txtImage']
+            pfsabproddetalle = request.form['txtDetalle']
+            pfsabprodprecio = request.form['txtPrecio']
+            pfsabprodstock = request.form['txtStock']
+            pfsabprodestado = request.form['selectEstado']
+            pfsabprodcreatedat = datetime.now()
+            pfsabcategoriaid = request.form['selectCategoria']
+            if pfsabprodnombre != '' and pfsabprodimage != '' and pfsabproddetalle != '' and pfsabprodprecio != '' and pfsabprodstock != '' and pfsabprodestado != 'Elija...' and pfsabprodcreatedat != '' and pfsabcategoriaid != '' :
+                adServConsult = AdminServiceProducto.onGetAdminServiceProductUpdate(id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid)
                 if adServConsult == True:
                     flash('Datos Actualizados', category='success')
                     return redirect(url_for('arp.onGetAdminControllerProductoList'))
@@ -74,24 +73,23 @@ class AdminControllerProducto:
 
         return render("modal/modalAdminProductoUpdate.html", producto = producto, categorias = categorias)   
 
-    def onGetControllerAdminConsultaDelete(id):
-        pfspcrconsultseccion = ''
-        pfspcrconsultnum = ''
-        pfspcrconsultnombre = ''
-        pfspcrconsultimage = ''
-        pfspcrconsultdetalle = ''
-        pfspcrconsulturl = ''
-        pfspcrconsultestado = 0
-        pfspcrconsultcreatedat = ''
-        pfspcrcateid = ''
-        if pfspcrconsultseccion == '' and pfspcrconsultnum == '' and pfspcrconsultnombre == '' and pfspcrconsultimage == '' and pfspcrconsultdetalle == '' and pfspcrconsulturl == '' and pfspcrconsultestado != '' and pfspcrconsultcreatedat == '' and pfspcrcateid == '' :
-            consulta = AdminServiceConsulta.onGetAdminServiceConsultaDelete(id, pfspcrconsultseccion, pfspcrconsultnum, pfspcrconsultnombre, pfspcrconsultimage, pfspcrconsultdetalle, pfspcrconsulturl, pfspcrconsultestado, pfspcrconsultcreatedat, pfspcrcateid)     
-            if consulta == True:
+    def onGetControllerAdminProductoDelete(id):
+        pfsabprodnombre = ''
+        pfsabprodimage = ''
+        pfsabproddetalle = ''
+        pfsabprodprecio = ''
+        pfsabprodstock = ''
+        pfsabprodestado = 0
+        pfsabprodcreatedat = ''
+        pfsabcategoriaid = ''
+        if  pfsabprodnombre == '' and pfsabprodimage == '' and pfsabproddetalle == '' and pfsabprodprecio == '' and pfsabprodstock == '' and pfsabprodestado != '' and pfsabprodcreatedat == '' and pfsabcategoriaid == '' :
+            producto = AdminServiceProducto.onGetAdminServiceProductoDelete(id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid)     
+            if producto == True:
                 flash('Datos Actualizados', category='success')
-                return redirect(url_for('racco.onGetAdminControllerConsultaList'))
+                return redirect(url_for('arp.onGetAdminControllerProductoList'))
             else:
                 flash('Campos vacios llene porfabor', category='success')
-                return redirect(url_for('racco.onGetAdminControllerConsultaList'))
+                return redirect(url_for('arp.onGetAdminControllerProductoList'))
         else:
                 flash('Campos vacios llene porfabor', category='success')
-                return redirect(url_for('racco.onGetAdminControllerConsultaList'))
+                return redirect(url_for('arp.onGetAdminControllerProductoList'))
