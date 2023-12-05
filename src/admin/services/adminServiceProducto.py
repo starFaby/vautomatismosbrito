@@ -76,7 +76,7 @@ class AdminServiceProducto:
     def onGetAdminServiceProductoDelete(self, id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid):
         producto = Producto.query.get(id)
         if producto.pfsabprodid >= 1:
-            modelProducto = ModelProducto(self, id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid)
+            modelProducto = ModelProducto(id, pfsabprodnombre, pfsabprodimage, pfsabproddetalle, pfsabprodprecio, pfsabprodstock, pfsabprodestado, pfsabprodcreatedat, pfsabcategoriaid)
             producto.pfsabprodestado = modelProducto.getpfsabprodestado()
             db.session.commit()
             return True
