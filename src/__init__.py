@@ -17,6 +17,7 @@ from src.auth.router.routerDataBase import psfvab
 from src.auth.router.routerLogout import rlgt
 #client
 from src.client.router.clientRouterCategoria import crc
+from src.client.router.clientRouterProducto import crp
 
 # middlewares
 from src.middlewares.middlewaresLoginIn import UserModel
@@ -45,6 +46,7 @@ def apprun():
 
     #   Client
     app.register_blueprint(crc)
+    app.register_blueprint(crp)
     
     
     #Sistem
